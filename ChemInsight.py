@@ -28,10 +28,6 @@ import urllib
 # Page expands to full width
 st.set_page_config(page_title='AIDrugApp', page_icon='🌐', layout="wide")
 
-# For hiding streamlit messages
-st.set_option('deprecation.showPyplotGlobalUse', False)
-st.set_option('deprecation.showfileUploaderEncoding', False)
-
 st.title('ChemInsight')
 st.success(
     "ChemInsight is a module of [**AIDrugApp v1.2.6**](https://aidrugapp.streamlit.app/) that facilitates molecule "
