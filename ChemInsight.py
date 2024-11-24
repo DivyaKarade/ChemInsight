@@ -404,20 +404,20 @@ if add_selectbox1 == 'Multiple molecules (Batch)':
                 st.info('**Histograms showing the distribution of the pair-wise scores**')
                 mybins = [x * 0.01 for x in range(101)]
 
-                # Create the figure and axes
-                fig, ax = plt.subplots(figsize=(8, 4), dpi=300)
-
+                # Create the figure object
+                fig = plt.figure(figsize=(8, 4), dpi=300)
+                
                 # First subplot: Distribution
-                ax.subplot(1, 2, 1)
-                ax.set_title("Distribution")
-                ax.hist(scores, bins=mybins)
-
+                plt.subplot(1, 2, 1)
+                plt.title("Distribution")
+                plt.hist(scores, bins=mybins)
+                
                 # Second subplot: Cumulative Distribution
-                ax.subplot(1, 2, 2)
-                ax.set_title("Cumulative Distribution")
-                ax.hist(scores, bins=mybins, density=True, cumulative=1)
-                ax.plot([0, 1], [0.95, 0.95])
-
+                plt.subplot(1, 2, 2)
+                plt.title("Cumulative Distribution")
+                plt.hist(scores, bins=mybins, density=True, cumulative=1)
+                plt.plot([0, 1], [0.95, 0.95])
+                
                 # Pass the figure to st.pyplot()
                 st.pyplot(fig)
 
