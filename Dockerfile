@@ -25,4 +25,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8501
 
 # Run the app with Streamlit, using Render's assigned $PORT
-CMD streamlit run chemdesigner.py --server.port=8501 --server.address=0.0.0.0 --server.enableCORS=false --server.enableWebsocketCompression=false
+CMD streamlit run ChemInsight.py --server.port=8501 --server.address=0.0.0.0 --server.enableCORS=false --server.enableWebsocketCompression=false
