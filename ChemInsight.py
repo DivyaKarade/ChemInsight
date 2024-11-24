@@ -414,7 +414,7 @@ if add_selectbox1 == 'Multiple molecules (Batch)':
                 plt.title("Cumulative Distribution")
                 plt.hist(scores, bins=mybins, density=True, cumulative=1)
                 plt.plot([0, 1], [0.95, 0.95])
-                st.pyplot()
+                st.pyplot(fig)
 
                 st.info("**Interpretation of similarity scores**")
                 st.write(
