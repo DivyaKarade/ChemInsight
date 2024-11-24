@@ -216,7 +216,7 @@ if add_selectbox1 == 'Multiple molecules (Batch)':
 
         if uploaded_file is not None:
             # Read CSV data
-            @st.cache
+            @st.cache_data
             def load_csv():
                 csv = pd.read_csv(uploaded_file)
                 return csv
@@ -294,7 +294,7 @@ if add_selectbox1 == 'Multiple molecules (Batch)':
 
         if uploaded_file is not None:
             # Read CSV data
-            @st.cache
+            @st.cache_data
             def load_csv():
                 csv = pd.read_csv(uploaded_file)
                 return csv
@@ -349,7 +349,7 @@ if add_selectbox1 == 'Multiple molecules (Batch)':
 
         if uploaded_file is not None:
             # Read CSV data
-            @st.cache
+            @st.cache_data
             def load_csv():
                 csv = pd.read_csv(uploaded_file)
                 return csv
@@ -464,7 +464,7 @@ if add_selectbox1 == 'Multiple molecules (Batch)':
 
         if uploaded_file is not None:
             # Read CSV data
-            @st.cache
+            @st.cache_data
             def load_csv():
                 csv = pd.read_csv(uploaded_file)
                 return csv
