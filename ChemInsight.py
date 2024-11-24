@@ -17,7 +17,6 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
-from keras.layers import *
 from io import BytesIO
 import streamlit.components.v1 as components
 from rdkit import Chem, DataStructs
