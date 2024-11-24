@@ -1,0 +1,7 @@
+matplotlib
+pandas
+streamlit
+keras
+rdkit
+pubchempy
+mols2grid
