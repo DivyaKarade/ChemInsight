@@ -16,7 +16,7 @@ WORKDIR /app
 COPY . /app
 
 # Install system dependencies from packages.txt
-RUN apt-get update && xargs -a packages.txt apt-get install -y
+# RUN apt-get update && xargs -a packages.txt apt-get install -y
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
@@ -25,4 +25,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8501
 
 # Run the app with Streamlit, using Render's assigned $PORT
-CMD streamlit run ChemInsight.py --server.port=8501 --server.address=0.0.0.0 --server.enableCORS=false --server.enableWebsocketCompression=false
+#CMD streamlit run ChemInsight.py --server.port=8501 --server.address=0.0.0.0 --server.enableCORS=false --server.enableWebsocketCompression=false
+
+# Run the Streamlit app (use dynamic port for hosting services)
+CMD streamlit run ChemInsight.py --server.port=${PORT:-8501} --server.address=0.0.0.0 --server.enableCORS=false --server.enableWebsocketCompression=false
+
