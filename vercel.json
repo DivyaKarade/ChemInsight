@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "cheminsight.py",  // Or whatever your main app file is named
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "cheminsight.py" // Or whatever your main app file is named
+    }
+  ]
+}
