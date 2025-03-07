@@ -487,6 +487,6 @@ if add_selectbox1 == 'Multiple molecules (Batch)':
             if st.sidebar.button("😊 GET STRUCTURE"):
                 st.subheader('2-D structure')
                 # raw_html = mols2grid.display(df2, mapping={"smiles": "SMILES"}, subset=["img", "iupac_name"], tooltip=["molecular_formula", "inchikey"])._repr_html_()
-                raw_html = mols2grid.display(df2, mapping={"smiles": "SMILES"},
-                                             tooltip=["SMILES"])._repr_html_()
+                raw_html = mols2grid.display(df2, mapping={"smiles": "smiles"},
+                                             tooltip=["smiles"])._repr_html_()
                 components.html(raw_html, width=900, height=900, scrolling=True)
