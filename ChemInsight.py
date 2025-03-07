@@ -459,34 +459,44 @@ if add_selectbox1 == 'Multiple molecules (Batch)':
                             st.write(" ")
 
     if add_selectbox2 == "2-D Structure":
-        # Sidebar
-        with st.sidebar.subheader('3. Upload your CSV data'):
-            uploaded_file = st.sidebar.file_uploader(
-                "Upload your input CSV file containing 'smile' as one column of molecular SMILES", type=["csv"])
-            st.sidebar.markdown("""
-                    [Example CSV input file](https://github.com/DivyaKarade/Example-.csv-input-files--AIDrugApp-v1.2/blob/main/Mol_identifier.csv)
-                    """)
-
-        if uploaded_file is not None:
-            # Read CSV data
-            @st.cache_data
-            def load_csv():
-                csv = pd.read_csv(uploaded_file)
-                return csv
-
-
-            df1 = load_csv()
-            df2 = df1.iloc[:, 0:]
-            X = df2
-            # Write CSV data
-            df2.to_csv('molecule.smi', sep='\t', header=False, index=False)
-            st.subheader('Uploaded data')
-            st.write(df2)
-            smile = df2['smiles'].values
-
-            if st.sidebar.button("😊 GET STRUCTURE"):
-                st.subheader('2-D structure')
-                # raw_html = mols2grid.display(df2, mapping={"smiles": "SMILES"}, subset=["img", "iupac_name"], tooltip=["molecular_formula", "inchikey"])._repr_html_()
-                raw_html = mols2grid.display(df2, mapping={"smiles": "smiles"},
-                                             tooltip=["smiles"])._repr_html_()
-                components.html(raw_html, width=900, height=900, scrolling=True)
+      # Sidebar
+      with st.sidebar.subheader('3. Upload your CSV data'):
+          uploaded_file = st.sidebar.file_uploader(
+              "Upload your input CSV file containing 'smiles' as one column of molecular SMILES", type=["csv"])
+          st.sidebar.markdown("""
+                  [Example CSV input file](https://github.com/DivyaKarade/Example-.csv-input-files--AIDrugApp-v1.2/blob/main/Mol_identifier.csv)
+                  """)
+  
+      if uploaded_file is not None:
+          # Read CSV data
+          @st.cache_data
+          def load_csv():
+              csv = pd.read_csv(uploaded_file)
+              return csv
+  
+          df1 = load_csv()
+  
+          # Standardize column names (convert to lowercase and remove spaces)
+          df1.columns = df1.columns.str.lower().str.strip()
+  
+          # Print available column names (for debugging)
+          st.write("Columns in df2:", df1.columns.tolist())
+  
+          df2 = df1.iloc[:, 0:]
+  
+          # Ensure 'smiles' column exists
+          if 'smiles' not in df2.columns:
+              st.error(f"Error: Column 'smiles' not found! Available columns: {df2.columns.tolist()}")
+              st.stop()
+  
+          df2.to_csv('molecule.smi', sep='\t', header=False, index=False)
+          st.subheader('Uploaded data')
+          st.write(df2)
+  
+          smile = df2['smiles'].values
+  
+          if st.sidebar.button("😊 GET STRUCTURE"):
+              st.subheader('2-D structure')
+              raw_html = mols2grid.display(df2, mapping={"smiles": "smiles"},
+                                           tooltip=["smiles"])._repr_html_()
+              components.html(raw_html, width=900, height=900, scrolling=True)
